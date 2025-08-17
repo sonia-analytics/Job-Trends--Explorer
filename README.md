@@ -3,6 +3,9 @@
 **Author:**Sonia Mannepuli
 **Date:**8/7/2025
 
+## Live Demo
+[Live on Streamlit Cloud](https://job-trends--explorer-wqkvpq2acknugghevg9pma.streamlit.app/)
+
 ## Project Overview
 
 - Scrapes job postings from LinkedIn
