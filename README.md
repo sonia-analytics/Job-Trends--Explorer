@@ -3,9 +3,6 @@
 **Author:**Sonia Mannepuli
 **Date:**8/7/2025
 
-## Live Demo
-[Live on Streamlit Cloud](https://job-trends--explorer-wqkvpq2acknugghevg9pma.streamlit.app/)
-
 ## Project Overview
 
 - Scrapes job postings from LinkedIn
@@ -18,12 +15,16 @@
 - `raw_job_data.csv` – Raw job postings data
 - `clean_job_data.csv` – Cleaned and processed job data
 - `dashboard.py` – Streamlit dashboard app
+- 'requirements.txt' - Python depemndcies 
 
 ## Packages Installed
    - pip install pandas streamlit openpyxl matplotlib
 
-## Runing a Streamlit Dashboard
+## Run dashboard locally
     - streamlit run dashboard.py
+
+## Live Demo
+[Explore the live dashboard](https://job-trends--explorer-wqkvpq2acknugghevg9pma.streamlit.app/)
     
 ## Example Visualizations
 
