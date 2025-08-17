@@ -18,6 +18,7 @@
 - 'requirements.txt' - Python dependencies
 
 ## Packages Installed
+
 - pip install pandas streamlit openpyxl matplotlib
 
 ## Run dashboard locally
@@ -28,5 +29,5 @@
     
 ## Example Visualizations
 
-- Top skills in demand: Python, SQL, excel
-- Top companies hiring
+- Top skills in demand: Python, SQL, Excel
+- Top companies hiring: PENN Interactive, Independence Blue Cross, Chubb
