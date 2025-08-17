@@ -1,6 +1,7 @@
-# Local Job Trends Explorer
+# Local Job Trends Project
 
-A Python-based project to analyze and visualize local job market trends for Data Analyst roles in Philadelphia, PA.
+**Author:**Sonia Mannepuli
+**Date:**8/7/2025
 
 ## Project Overview
 
@@ -11,26 +12,17 @@ A Python-based project to analyze and visualize local job market trends for Data
 
 ## Files
 
-- `raw_jobs_data.xlsx` – Raw job postings data
-- `cleaned_jobs_data.xlsx` – Cleaned and processed job data
+- `raw_job_data.csv` – Raw job postings data
+- `clean_job_data.csv` – Cleaned and processed job data
 - `dashboard.py` – Streamlit dashboard app
 
-## How to Run
+## Packages Installed
+   - pip install pandas streamlit openpyxl matplotlib
 
-1. Install requirements:
-    ```
-    pip install pandas streamlit openpyxl matplotlib
-    ```
-2. Run the dashboard:
-    ```
-    streamlit run dashboard.py
-    ```
-
+## Runing a Streamlit Dashboard
+    - streamlit run dashboard.py
+    
 ## Example Visualizations
 
 - Top skills in demand
 - Top companies hiring
-
-## Author
-
-Sonia Mannepuli
