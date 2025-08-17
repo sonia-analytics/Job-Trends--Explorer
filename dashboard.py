@@ -118,4 +118,3 @@ else:
 
 st.markdown("---")
 st.write("Data source: LinkedIn job postings | Dashboard by Sonia Mannepuli")
-     
