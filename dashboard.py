@@ -77,36 +77,6 @@ st.write(f"Showing {len(df)} jobs after filtering.")
 st.subheader("Sample Job Previews")
 st.dataframe(df.head(5))
 
-# --- Bar Charts (Filtered) ---
-st.subheader("Top Companies Hiring (Filtered)")
-if company_col and not df.empty:
-    company_counts = df[company_col].value_counts().head(10)
-    st.bar_chart(company_counts)
-else:
-    st.warning("No 'Company' column found or no data to display.")
-
-st.subheader("Top Skills in Demand (Filtered)")
-if skills_col and not df.empty:
-    def parse_skills(x):
-        if isinstance(x, str):
-            if x.startswith('['):
-                try:
-                    return [s.strip().lower() for s in ast.literal_eval(x)]
-                except:
-                    return []
-            else:
-                return [s.strip().lower() for s in x.split(',')]
-        return []
-    skills_series = df[skills_col].dropna().apply(parse_skills)
-    all_skills = [skill for sublist in skills_series for skill in sublist]
-    if all_skills:
-        skills_counts = pd.Series(all_skills).value_counts().head(10)
-        st.bar_chart(skills_counts)
-    else:
-        st.warning("No skills data found.")
-else:
-    st.warning("No 'Skills' column found or no data to display.")
-
 # --- Static Images ---
 st.subheader("Bar Chart Images")
 if os.path.exists("companies.png"):
