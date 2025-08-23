@@ -18,6 +18,7 @@ st.dataframe(df.head(36))
 st.subheader("Sample Job Previews")
 df = pd.read_csv("clean_job_data.csv")  # Directly load the CSV file
 st.dataframe(df.head(5))
+
 st.subheader("Bar Chart Images")
 if os.path.exists("companies.png"):
     st.image("companies.png", caption="Top Companies (Image)", use_container_width=True)
@@ -29,5 +30,5 @@ if os.path.exists("skills.png"):
 else:
     st.warning("skills.png not found in app folder.")
 
-st.markdown('_____________')
+st.markdown('--------')
 st.write("Data source: LinkedIn job postings | Dashboard by Sonia Mannepuli")
