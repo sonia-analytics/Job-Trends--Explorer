@@ -13,7 +13,7 @@ except Exception as e:
     st.stop()
 
 st.subheader("Data Preview")
-st.dataframe(df.head(36))
+st.dataframe(df.head(35))
 
 st.subheader("Sample Job Previews")
 df = pd.read_csv("clean_job_data.csv")  # Directly load the CSV file
