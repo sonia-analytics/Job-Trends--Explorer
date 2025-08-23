@@ -65,10 +65,8 @@ if keyword:
     df = df[mask]
 
 st.write(f"Showing {len(df)} jobs after filtering.")
-
 st.subheader("Sample Job Previews")
 st.dataframe(df.head(5))
-
 st.subheader("Bar Chart Images")
 if os.path.exists("companies.png"):
     st.image("companies.png", caption="Top Companies (Image)", use_container_width=True)
@@ -80,5 +78,4 @@ if os.path.exists("skills.png"):
 else:
     st.warning("skills.png not found in app folder.")
 
-st.markdown("---")
 st.write("Data source: LinkedIn job postings | Dashboard by Sonia Mannepuli")
