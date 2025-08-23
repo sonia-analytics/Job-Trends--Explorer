@@ -14,57 +14,7 @@ except Exception as e:
 
 st.subheader("Data Preview")
 st.dataframe(df.head(6))
-st.subheader("Filter Jobs")
 
-company_col = [col for col in df.columns if col.strip().lower() == 'company']
-if company_col:
-    company_col = company_col[0]
-    companies = sorted(df[company_col].dropna().unique())
-    selected_company = st.selectbox("Filter by company", ["All"] + companies)
-    if selected_company != "All":
-        df = df[df[company_col] == selected_company]
-
-skills_col = [col for col in df.columns if col.strip().lower() == 'skills']
-if skills_col:
-    skills_col = skills_col[0]
-    # Flatten all skills for the filter
-    all_skills = []
-    for val in df[skills_col].dropna():
-        if isinstance(val, str):
-            if val.startswith('['):
-                try:
-                    all_skills.extend(ast.literal_eval(val))
-                except:
-                    continue
-            else:
-                all_skills.extend([s.strip() for s in val.split(',')])
-    all_skills = sorted(set([s.lower() for s in all_skills]))
-    selected_skill = st.selectbox("Filter by skill", ["All"] + all_skills)
-    if selected_skill != "All":
-        def has_skill(x):
-            if isinstance(x, str):
-                if x.startswith('['):
-                    try:
-                        return selected_skill in [s.lower() for s in ast.literal_eval(x)]
-                    except:
-                        return False
-                else:
-                    return selected_skill in [s.strip().lower() for s in x.split(',')]
-            return False
-        df = df[df[skills_col].apply(has_skill)]
-
-keyword = st.text_input("Search job title or summary (optional)").strip().lower()
-if keyword:
-    title_col = [col for col in df.columns if col.strip().lower() == 'title']
-    summary_col = [col for col in df.columns if col.strip().lower() == 'summary']
-    mask = pd.Series([False]*len(df))
-    if title_col:
-        mask = mask | df[title_col[0]].astype(str).str.lower().str.contains(keyword, na=False)
-    if summary_col:
-        mask = mask | df[summary_col[0]].astype(str).str.lower().str.contains(keyword, na=False)
-    df = df[mask]
-
-st.write(f"Showing {len(df)} jobs after filtering.")
 st.subheader("Sample Job Previews")
 st.dataframe(df.head(5))
 st.subheader("Bar Chart Images")
