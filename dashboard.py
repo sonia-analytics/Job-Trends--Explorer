@@ -13,7 +13,7 @@ except Exception as e:
     st.stop()
 
 st.subheader("Data Preview")
-st.dataframe(df.head(6))
+st.dataframe(df.head(36))
 
 st.subheader("Sample Job Previews")
 st.dataframe(df.head(5))
