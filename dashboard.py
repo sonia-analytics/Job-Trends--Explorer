@@ -14,11 +14,8 @@ except Exception as e:
 
 st.subheader("Data Preview")
 st.dataframe(df.head(6))
-
-# --- Filters ---
 st.subheader("Filter Jobs")
 
-# Company filter
 company_col = [col for col in df.columns if col.strip().lower() == 'company']
 if company_col:
     company_col = company_col[0]
@@ -27,7 +24,6 @@ if company_col:
     if selected_company != "All":
         df = df[df[company_col] == selected_company]
 
-# Skill filter
 skills_col = [col for col in df.columns if col.strip().lower() == 'skills']
 if skills_col:
     skills_col = skills_col[0]
@@ -57,7 +53,6 @@ if skills_col:
             return False
         df = df[df[skills_col].apply(has_skill)]
 
-# Keyword search
 keyword = st.text_input("Search job title or summary (optional)").strip().lower()
 if keyword:
     title_col = [col for col in df.columns if col.strip().lower() == 'title']
@@ -71,11 +66,9 @@ if keyword:
 
 st.write(f"Showing {len(df)} jobs after filtering.")
 
-# --- Job Previews ---
 st.subheader("Sample Job Previews")
 st.dataframe(df.head(5))
 
-# --- Static Images ---
 st.subheader("Bar Chart Images")
 if os.path.exists("companies.png"):
     st.image("companies.png", caption="Top Companies (Image)", use_container_width=True)
