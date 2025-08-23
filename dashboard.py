@@ -9,13 +9,14 @@ st.write("Analyze Data Analyst job trends in Philadelphia, PA.")
 try:
     df = pd.read_csv("raw_job_data.csv")  # Directly load the CSV file
 except Exception as e:
-    st.error(f"Failed to load clean_job_data.csv. Please ensure it's in the app folder. Error: {str(e)}")
+    st.error(f"Failed to load raw_job_data.csv. Please ensure it's in the app folder. Error: {str(e)}")
     st.stop()
 
 st.subheader("Data Preview")
 st.dataframe(df.head(36))
 
 st.subheader("Sample Job Previews")
+df = pd.read_csv("clean_job_data.csv")  # Directly load the CSV file
 st.dataframe(df.head(5))
 st.subheader("Bar Chart Images")
 if os.path.exists("companies.png"):
