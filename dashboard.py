@@ -7,7 +7,7 @@ st.title("Local Job Trends Explorer")
 st.write("Analyze Data Analyst job trends in Philadelphia, PA.")
 
 try:
-    df = pd.read_csv("clean_job_data.csv")  # Directly load the CSV file
+    df = pd.read_csv("raw_job_data.csv")  # Directly load the CSV file
 except Exception as e:
     st.error(f"Failed to load clean_job_data.csv. Please ensure it's in the app folder. Error: {str(e)}")
     st.stop()
