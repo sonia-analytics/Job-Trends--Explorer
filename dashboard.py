@@ -15,7 +15,7 @@ except Exception as e:
 
 # --- Data Preview ---
 st.subheader("Data Preview")
-st.dataframe(df.head(10))
+st.dataframe(df.head(6))
 
 # --- Filters ---
 st.subheader("Filter Jobs")
