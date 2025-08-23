@@ -29,4 +29,5 @@ if os.path.exists("skills.png"):
 else:
     st.warning("skills.png not found in app folder.")
 
+st.markdown('_____________')
 st.write("Data source: LinkedIn job postings | Dashboard by Sonia Mannepuli")
