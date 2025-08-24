@@ -16,9 +16,7 @@ st.subheader("Data Preview")
 st.dataframe(df.head(35))
 
 st.markdown("### Filter and Sample Job Preview")
-
 df_clean = pd.read_csv("clean_job_data.csv")
-# Use first text column for filtering
 filter_col = df_clean.select_dtypes(include="object").columns[0]
 options = ["All"] + sorted(df_clean[filter_col].dropna().unique())
 choice = st.selectbox(f"Select {filter_col}", options)
@@ -27,7 +25,7 @@ filtered = df_clean if choice == "All" else df_clean[df_clean[filter_col] == cho
 
 if not filtered.empty:
     job = filtered.sample(1).iloc[0]
-    with st.expander("📄 Sample Job"):
+    with st.expander("#Sample Job"):
         for col in filtered.columns:
             st.write(f"**{col}:** {job[col]}")
 else:
