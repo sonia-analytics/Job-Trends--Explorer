@@ -24,6 +24,15 @@ st.subheader("Data Preview")
 st.dataframe(df.head(35))
 
 st.subheader("Sample Job Previews")
+if not df.empty:
+    sample_job = df.sample(1).iloc[0]
+    with st.expander("📄 Sample Job Preview"):
+        st.write(f"**Title:** {sample_job['Title']}")
+        st.write(f"**Company:** {sample_job['Company']}")
+        st.write(f"**Location:** {sample_job['Location']}")
+        st.write(f"**Description:** {sample_job['Description']}")
+else:
+    st.warning("No jobs available for selected company.")
 df = pd.read_csv("clean_job_data.csv")  # Directly load the CSV file
 st.dataframe(df.head(5))
 
