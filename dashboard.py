@@ -53,14 +53,36 @@ if selected_company != "All":
 else:
     filtered_df = df_clean
 
-# Show filtered jobs (optional preview)
-st.markdown("### 📄 Sample Job Preview")
-if not filtered_df.empty:
-    sample_job = filtered_df.sample(1).iloc[0]
-    with st.expander("Click to view a sample job"):
-        st.write(f"**Title:** {sample_job['Title']}")
-        st.write(f"**Company:** {sample_job['Company']}")
-        st.write(f"**Location:** {sample_job['Location']}")
-        st.write(f"**Description:** {sample_job['Description']}")
+# -------- Filter and Sample Job Preview --------
+st.markdown("##Filter Jobs by Company")
+
+try:
+    df_clean = pd.read_csv("clean_job_data.csv")
+except Exception as e:
+    st.error(f"Failed to load clean_job_data.csv. Error: {str(e)}")
+    st.stop()
+
+# Use actual column name from your file
+actual_column = "company"  # Replace with exact name from st.write output
+
+if actual_column in df_clean.columns:
+    company_options = ["All"] + sorted(df_clean[actual_column].dropna().unique().tolist())
+    selected_company = st.selectbox("Select a Company", company_options)
+
+    if selected_company != "All":
+        filtered_df = df_clean[df_clean[actual_column] == selected_company]
+    else:
+        filtered_df = df_clean
+
+    st.markdown("### 📄 Sample Job Preview")
+    if not filtered_df.empty:
+        sample_job = filtered_df.sample(1).iloc[0]
+        with st.expander("Click to view a sample job"):
+            st.write(f"**Title:** {sample_job.get('Title', 'N/A')}")
+            st.write(f"**Company:** {sample_job.get(actual_column, 'N/A')}")
+            st.write(f"**Location:** {sample_job.get('Location', 'N/A')}")
+            st.write(f"**Description:** {sample_job.get('Description', 'N/A')}")
+    else:
+        st.warning("No jobs found for the selected company.")
 else:
-    st.warning("No jobs found for the selected company.")
+    st.warning(f"Column '{actual_column}' not found in dataset.")
