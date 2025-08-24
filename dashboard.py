@@ -33,32 +33,21 @@ else:
 st.markdown('--------')
 st.write("Data source: LinkedIn job postings | Dashboard by Sonia Mannepuli")
 
-st.markdown("###Filter and Sample Job Preview")
+st.markdown("### Filter and Sample Job Preview")
 
-try:
-    df_clean = pd.read_csv("clean_job_data.csv")
-except Exception as e:
-    st.error(f"Failed to load clean_job_data.csv. Error: {str(e)}")
-    st.stop()
+df_clean = pd.read_csv("clean_job_data.csv")
 
-# Auto-detect a usable column for filtering
-text_columns = df_clean.select_dtypes(include="object").columns.tolist()
-filter_column = text_columns[0] if text_columns else None
+# Use first text column for filtering
+filter_col = df_clean.select_dtypes(include="object").columns[0]
+options = ["All"] + sorted(df_clean[filter_col].dropna().unique())
+choice = st.selectbox(f"Select {filter_col}", options)
 
-if filter_column:
-    st.write(f"Filtering by: **{filter_column}**")
-    options = ["All"] + sorted(df_clean[filter_column].dropna().unique().tolist())
-    selected = st.selectbox(f"Select a {filter_column}", options)
+filtered = df_clean if choice == "All" else df_clean[df_clean[filter_col] == choice]
 
-    filtered_df = df_clean if selected == "All" else df_clean[df_clean[filter_column] == selected]
-
-    st.markdown("### 📄 Sample Job Preview")
-    if not filtered_df.empty:
-        job = filtered_df.sample(1).iloc[0]
-        with st.expander("Click to view a sample job"):
-            for col in filtered_df.columns:
-                st.write(f"**{col}:** {job[col]}")
-    else:
-        st.warning("No jobs found for the selected option.")
+if not filtered.empty:
+    job = filtered.sample(1).iloc[0]
+    with st.expander("📄 Sample Job"):
+        for col in filtered.columns:
+            st.write(f"**{col}:** {job[col]}")
 else:
-    st.warning("No text columns available for filtering.")
+    st.warning("No jobs found.")
