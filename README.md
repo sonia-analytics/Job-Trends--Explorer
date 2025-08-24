@@ -1,5 +1,5 @@
 Tools: Python, BeautifulSoup, Pandas, Streamlit, GitHub  
-Analyzed Data Analyst job trends in Philadelphia by scraping postings from LinkedIn, cleaning and structuring the data, and visualizing top skills and hiring companies. Built an interactive dashboard with filters and sample job previews to help users explore local market demand.
+Analyzed Data Analyst job trends in Philadelphia by scraping postings from LinkedIn, cleaning and structuring the data, and visualizing top skills and hiring companies. Built a simple interactive dashboard with filters and sample job previews to help users explore local market demand.
 
 # Local Job Trends Project
 
