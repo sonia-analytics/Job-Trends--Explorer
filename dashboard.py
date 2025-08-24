@@ -12,6 +12,14 @@ except Exception as e:
     st.error(f"Failed to load raw_job_data.csv. Please ensure it's in the app folder. Error: {str(e)}")
     st.stop()
 
+# Sidebar filter
+company_list = ["All"] + sorted(df["Company"].dropna().unique().tolist())
+selected_company = st.sidebar.selectbox("Filter by Company", company_list)
+
+# Apply filter
+if selected_company != "All":
+    df = df[df["Company"] == selected_company]
+
 st.subheader("Data Preview")
 st.dataframe(df.head(35))
 
