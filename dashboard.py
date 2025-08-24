@@ -44,12 +44,12 @@ except Exception as e:
     st.stop()
 
 # Create filter dropdown
-company_options = ["All"] + sorted(df_clean["Company"].dropna().unique().tolist())
+company_options = ["All"] + sorted(df_clean["company"].dropna().unique().tolist())
 selected_company = st.selectbox("Select a Company", company_options)
 
 # Apply filter
 if selected_company != "All":
-    filtered_df = df_clean[df_clean["Company"] == selected_company]
+    filtered_df = df_clean[df_clean["company"] == selected_company]
 else:
     filtered_df = df_clean
 
