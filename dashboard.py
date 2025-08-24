@@ -25,7 +25,7 @@ filtered = df_clean if choice == "All" else df_clean[df_clean[filter_col] == cho
 
 if not filtered.empty:
     job = filtered.sample(1).iloc[0]
-    with st.expander("#Sample Job"):
+    with st.expander("Sample Job"):
         for col in filtered.columns:
             st.write(f"**{col}:** {job[col]}")
 else:
