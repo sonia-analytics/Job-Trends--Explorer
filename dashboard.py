@@ -15,28 +15,9 @@ except Exception as e:
 st.subheader("Data Preview")
 st.dataframe(df.head(35))
 
-st.subheader("Sample Job Previews")
-df = pd.read_csv("clean_job_data.csv")  # Directly load the CSV file
-st.dataframe(df.head(5))
-
-st.subheader("Bar Chart Images")
-if os.path.exists("companies.png"):
-    st.image("companies.png", caption="Top Companies (Image)", use_container_width=True)
-else:
-    st.warning("companies.png not found in app folder.")
-
-if os.path.exists("skills.png"):
-    st.image("skills.png", caption="Top Skills (Image)", use_container_width=True)
-else:
-    st.warning("skills.png not found in app folder.")
-
-st.markdown('--------')
-st.write("Data source: LinkedIn job postings | Dashboard by Sonia Mannepuli")
-
 st.markdown("### Filter and Sample Job Preview")
 
 df_clean = pd.read_csv("clean_job_data.csv")
-
 # Use first text column for filtering
 filter_col = df_clean.select_dtypes(include="object").columns[0]
 options = ["All"] + sorted(df_clean[filter_col].dropna().unique())
@@ -51,3 +32,17 @@ if not filtered.empty:
             st.write(f"**{col}:** {job[col]}")
 else:
     st.warning("No jobs found.")
+
+st.subheader("Bar Chart Images")
+if os.path.exists("companies.png"):
+    st.image("companies.png", caption="Top Companies (Image)", use_container_width=True)
+else:
+    st.warning("companies.png not found in app folder.")
+
+if os.path.exists("skills.png"):
+    st.image("skills.png", caption="Top Skills (Image)", use_container_width=True)
+else:
+    st.warning("skills.png not found in app folder.")
+
+st.markdown('--------')
+st.write("Data source: LinkedIn job postings | Dashboard by Sonia Mannepuli")
