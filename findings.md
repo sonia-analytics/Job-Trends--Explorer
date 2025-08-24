@@ -1,7 +1,7 @@
 # Philadelphia Data Analyst Job trends
 
 **Author:** Sonia Mannepuli
-**Date:** 
+**Date:**8/19/2025
 
 ## Top Skills
 1. Python - 85% of jobs
