@@ -11,28 +11,11 @@ try:
 except Exception as e:
     st.error(f"Failed to load raw_job_data.csv. Please ensure it's in the app folder. Error: {str(e)}")
     st.stop()
-
-# Sidebar filter
-company_list = ["All"] + sorted(df["Company"].dropna().unique().tolist())
-selected_company = st.sidebar.selectbox("Filter by Company", company_list)
-
-# Apply filter
-if selected_company != "All":
-    df = df[df["Company"] == selected_company]
-
+    
 st.subheader("Data Preview")
 st.dataframe(df.head(35))
 
 st.subheader("Sample Job Previews")
-if not df.empty:
-    sample_job = df.sample(1).iloc[0]
-    with st.expander("📄 Sample Job Preview"):
-        st.write(f"**Title:** {sample_job['Title']}")
-        st.write(f"**Company:** {sample_job['Company']}")
-        st.write(f"**Location:** {sample_job['Location']}")
-        st.write(f"**Description:** {sample_job['Description']}")
-else:
-    st.warning("No jobs available for selected company.")
 df = pd.read_csv("clean_job_data.csv")  # Directly load the CSV file
 st.dataframe(df.head(5))
 
