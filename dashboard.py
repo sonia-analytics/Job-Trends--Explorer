@@ -32,3 +32,35 @@ else:
 
 st.markdown('--------')
 st.write("Data source: LinkedIn job postings | Dashboard by Sonia Mannepuli")
+
+# -------- Filter and Sample Job Preview --------
+st.markdown("### 🔍 Filter Jobs by Company")
+
+# Reload cleaned data for filtering
+try:
+    df_clean = pd.read_csv("clean_job_data.csv")
+except Exception as e:
+    st.error(f"Failed to load clean_job_data.csv. Error: {str(e)}")
+    st.stop()
+
+# Create filter dropdown
+company_options = ["All"] + sorted(df_clean["Company"].dropna().unique().tolist())
+selected_company = st.selectbox("Select a Company", company_options)
+
+# Apply filter
+if selected_company != "All":
+    filtered_df = df_clean[df_clean["Company"] == selected_company]
+else:
+    filtered_df = df_clean
+
+# Show filtered jobs (optional preview)
+st.markdown("### 📄 Sample Job Preview")
+if not filtered_df.empty:
+    sample_job = filtered_df.sample(1).iloc[0]
+    with st.expander("Click to view a sample job"):
+        st.write(f"**Title:** {sample_job['Title']}")
+        st.write(f"**Company:** {sample_job['Company']}")
+        st.write(f"**Location:** {sample_job['Location']}")
+        st.write(f"**Description:** {sample_job['Description']}")
+else:
+    st.warning("No jobs found for the selected company.")
